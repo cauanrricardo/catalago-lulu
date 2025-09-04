@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Catálogo Club da Luluzinha Cosméticos – Produtos Profissionais para Cabelos</title>
+    <title>Catálogo Club da Lulu Cosméticos – Produtos Profissionais para Cabelos</title>
     <link rel="icon" type="image/png" href="imagens/logo.jpeg" />
     <style>
         :root {
@@ -117,6 +117,7 @@
 
         .categoria {
             padding: 1rem;
+            scroll-margin-top: 80px;
         }
 
         .categoria h2 {
@@ -587,7 +588,7 @@
         </button>
         <a href="#topo" class="logo">
             <img src="imagens/logo.jpeg" alt="Logo da loja" />
-            <span>Club da Luluzinha</span>
+            <span>Club da Lulu</span>
         </a>
         <div class="menu" onclick="toggleMenu()" aria-label="Abrir menu">☰</div>
     </header>
@@ -603,7 +604,7 @@
         <a href="#Glamour-Hair" onclick="fecharMenu()">Glamour Hair</a>
         <a href="#Boa-Garota" onclick="fecharMenu()">Boa Garota</a>
         <a href="#Nature-Glow" onclick="fecharMenu()">Nature Glow</a>
-        <a href="#A-mpolas" onclick="fecharMenu()">Ampolas</a>
+        <a href="#Ampolas" onclick="fecharMenu()">Ampolas</a>
         <a href="#Destaques-Individuais" onclick="fecharMenu()">Destaques Individuais</a>
         <a href="#Kits-Completos" onclick="fecharMenu()">Kits Completos</a>
 
@@ -616,7 +617,7 @@
         <a href="#Glamour-Hair">Glamour Hair</a>
         <a href="#Boa-Garota">Boa Garota</a>
         <a href="#Nature-Glow">Nature Glow</a>
-        <a href="#A-mpolas">Ampolas</a>
+        <a href="#Ampolas">Ampolas</a>
         <a href="#Destaques-Individuais">Destaques Individuais</a>
         <a href="#Kits-Completos">Kits Completos</a>
     </nav>
@@ -1490,7 +1491,7 @@
 
     <!-- Fim dos produtos da categoria Nature Glow -->
     <!--+====================================AMPOLAS===========================================-->
-    <section class="categoria" id="A-mpolas">
+    <section class="categoria" id="Ampolas">
         <h2 class="titulo-linha">Ampolas</h2>
 
         <div class="produtos">
@@ -1576,8 +1577,8 @@
             </div>
         </div> <!-- /produtos -->
     </section>
-
     <!-- Fim dos produtos da categoria Ampolas -->
+    <!--INICO DOS DESTAQUES INDIVIDUAIS-->
     <section class="categoria" id="Destaques-Individuais">
         <h2 class="titulo-linha">Destaques Individuais</h2>
         <div class="produtos">
@@ -1605,7 +1606,7 @@
                 </div>
             </div>
 
-            <!-- Produto 2 - =========================================== BRONZE -->
+            <!-- Produto 2 - =========================================== TOQUE SECO -->
             <div class="produto">
                 <div class="carousel">
                     <div class="carousel-track">
@@ -1620,34 +1621,30 @@
                 </button>
                 <div class="descricao">
                     <strong>Reparador de Pontas Toque Seco - 60ml</strong><br /><br />
-                    Tratamento multifuncional com 10 benefícios em um só produto:
+                    O óleo foi especialmente formulado para tratar e proteger as pontas dos cabelos, oferecendo um
+                    acabamento suave e sem oleosidade
                     <ul>
-                        <li>Repara pontas duplas instantaneamente</li>
-                        <li>Reduz o frizz e dá brilho imediato</li>
-                        <li>Proteção térmica até 230°C</li>
-                        <li>Nutre e fortalece os fios sem pesar</li>
-                        <li>Previne ressecamento por químicas e sol</li>
-                        <li>Protege contra cloro, sal e poluição</li>
-                        <li>Melhora a maleabilidade e maciez</li>
-                        <li>Desembaraço fácil e menos quebra</li>
-                        <li>Finalização profissional com efeito leve</li>
-                        <li>Uso diário em cabelos secos ou úmidos</li>
+                        <strong>Benefícios:</strong>
+                        <li>Prevenção de queda e danos </li>
+                        <li>Acabamento luminoso com partículas de mica dourada para brilho extra </li>
+                        <li>Contém filtro solar capilar, ideal para usar antes de atividades como treinos</li>
+                        <li>Anti frizz</li>
                     </ul>
                 </div>
-                <p class="preco">R$ 44,14</p>
+                <p class="preco">R$ 59,18</p>
                 <div class="bloco-compra">
                     <div class="quantidade">
                         <label>Qtd:</label>
                         <input type="number" id="qtd-toqueseco" min="1" value="1" />
                     </div>
                     <button class="whatsapp"
-                        onclick="adicionarAoCarrinho('Reparador de Pontas Toque Seco', 44.14, 'qtd-toqueseco')">
+                        onclick="adicionarAoCarrinho('Reparador de Pontas Toque Seco', 59.18, 'qtd-toqueseco')">
                         Adicionar
                     </button>
                 </div>
             </div>
 
-            <!--------===========================================--------------------++++++++++++++++-USO OFICIAL-----------03-->
+            <!--------================= USO OFICIAL-----------03-->
             <div class="produto">
                 <div class="carousel">
                     <div class="carousel-track">
@@ -1689,7 +1686,6 @@
             </div>
 
             <!-- Produto 4 - Mascara Teia -->
-            <!--   ================-->
             <div class="produto">
                 <img src="imagens/mascara-teia.jpeg" alt="Máscara Teia" loading="lazy" />
                 <h3>Máscara Teia</h3>
@@ -1720,7 +1716,7 @@
                 </div>
             </div>
 
-            <!-- 04 Glamour Liso-->
+            <!-- 05 Glamour Liso-->
             <div class="produto">
                 <div class="carousel">
                     <div class="carousel-track">
@@ -1758,9 +1754,8 @@
             </div>
         </div>
     </section>
-    <!------------------------------- KITS COMPLETOS -->
     <!--================================================-->
-
+    <!------------------------------- KITS COMPLETOS -->
     <section class="categoria" id="Kits-Completos">
         <h2 class="titulo-linha">Kits Completos</h2>
         <div class="produtos">
@@ -1798,7 +1793,7 @@
                 </div>
             </div>
 
-            <!-- Produto 2 - =========================================== MAGIA DO BRILHO -->
+            <!-- Kit 2 - =============== MAGIA DO BRILHO -->
             <div class="produto">
                 <img src="imagens/kitmagia-brilho.jpeg" alt="Kit Magia do Brilho" loading="lazy" />
                 <h3>Kit Magia do Brilho</h3>
@@ -1832,7 +1827,7 @@
                     </button>
                 </div>
             </div>
-            <!------++++++++++++++++-Clube do Cacho-----------03-->
+            <!--KIT 03---======Clube do Cacho------------->
             <div class="produto">
                 <img src="imagens/kit-clubecachos.jpeg" alt="Kit Clube dos Cachos" loading="lazy" />
                 <h3>Kit Clube dos Cachos</h3>
@@ -1864,8 +1859,8 @@
                 </div>
             </div>
 
-            <!-- Kit 4 -GLAMOUR HAIR -->
             <!--   ================-->
+            <!-- Kit 4 -GLAMOUR HAIR -->
             <div class="produto">
                 <img src="imagens/kithairglamour.jpeg" alt="Kit Glamour Hair" loading="lazy" />
                 <h3>Kit Glamour Hair</h3>
@@ -1909,7 +1904,7 @@
                 </div>
             </div>
 
-            <!-- Kit Ampola -->
+            <!-- ====Kit Ampola -->
             <div class="produto">
                 <img src="imagens/kitampola.jpeg" alt="Kit Ampolas Mágicas" loading="lazy" />
                 <h3>Kit Ampolas Mágicas</h3>
@@ -1961,7 +1956,7 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   ">
         <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 2rem">
-            <img src="imagens/logo.jpeg" alt="Logo Club da Luluzinha Cosméticos" style="
+            <img src="imagens/logo.jpeg" alt="Logo Club da Lulu Cosméticos" style="
       flex: 1 1 300px;
       max-width: 300px;
       border-radius: 1rem;
@@ -1979,7 +1974,7 @@
                     Sobre nós
                 </h2>
                 <p>
-                    O <strong>Club da Luluzinha Cosméticos</strong> nasceu do sonho de
+                    O <strong>Club da Lulu Cosméticos</strong> nasceu do sonho de
                     transformar cuidados em momentos mágicos. 💕 Somos apaixonadas por
                     beleza, autoestima e produtos que fazem você se sentir incrível!
                 </p>
@@ -2040,7 +2035,7 @@
             </a>
 
             <!-- ✅ WhatsApp com mensagem automática -->
-            <a href="https://wa.me/5531994971211?text=Ol%C3%A1,+acessei+o+cat%C3%A1logo+Club+da+Luluzinha+e+gostaria+de+mais+informa%C3%A7%C3%B5es+%F0%9F%92%96"
+            <a href="https://wa.me/5531994971211?text=Ol%C3%A1,+acessei+o+cat%C3%A1logo+Club+da+Lulu+e+gostaria+de+mais+informa%C3%A7%C3%B5es+%F0%9F%92%96"
                 target="_blank"
                 style="text-decoration: none; color: #5a3b4c; display: flex; align-items: center; gap: 0.5rem;">
                 <img src="imagens/wats.jpg" alt="WhatsApp" style="width: 24px" />
@@ -2246,7 +2241,6 @@
                         });
                     }
                 }
-                // se for https://, mailto:, wa.me → abre normal
             });
         });
 
