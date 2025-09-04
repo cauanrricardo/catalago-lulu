@@ -1,0 +1,2256 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catálogo Club da Luluzinha Cosméticos – Produtos Profissionais para Cabelos</title>
+    <link rel="icon" type="image/png" href="imagens/logo.jpeg" />
+    <style>
+        :root {
+            --cor-primaria: #fa90d1;
+            --cor-secundaria: #e10b8b;
+            --cor-destaque: #1cac51;
+            --cor-texto: #333;
+            --cor-fundo: #f3eef3;
+            --sombra: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--cor-primaria);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--sombra);
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .logo span {
+            display: none;
+        }
+
+        .menu {
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: white;
+            padding: 0 5px;
+        }
+
+        .carrinho-btn {
+            background: #fff;
+            border: 1px solid var(--cor-primaria);
+            color: var(--cor-primaria);
+            padding: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: bold;
+        }
+
+        .categorias-nav {
+            display: flex;
+            overflow-x: auto;
+            gap: 0.8rem;
+            padding: 1rem;
+            background-color: white;
+            position: sticky;
+            top: 63px;
+            z-index: 90;
+            border-bottom: 1px solid #ddd;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .categorias-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .categorias-nav a {
+            text-decoration: none;
+            color: var(--cor-texto);
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s;
+            white-space: nowrap;
+            background-color: #f9f9f9;
+        }
+
+        .categorias-nav a:hover,
+        .categorias-nav a:focus {
+            background-color: var(--cor-primaria);
+            color: white;
+        }
+
+        .categoria {
+            padding: 1rem;
+        }
+
+        .categoria h2 {
+            margin-bottom: 1rem;
+            text-align: center;
+            color: var(--cor-secundaria);
+        }
+
+        .produtos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.2rem;
+            padding: 0.5rem;
+        }
+
+        .produto {
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--sombra);
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s;
+        }
+
+        .produto:hover {
+            transform: translateY(-5px);
+        }
+
+        .produto img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+
+        .produto h3 {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+            min-height: 2.6rem;
+        }
+
+        .ver-descricao {
+            color: var(--cor-secundaria);
+            font-weight: bold;
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 0.3rem 0;
+            margin: 0.3rem 0;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .descricao {
+            font-size: 0.9rem;
+            color: #666;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.3s ease;
+        }
+
+        .descricao.expandida {
+            max-height: 500px;
+            padding-top: 0.5rem;
+        }
+
+        .descricao ul {
+            padding-left: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .preco {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+            color: var(--cor-secundaria);
+        }
+
+        .bloco-compra {
+            margin-top: auto;
+            padding-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .quantidade {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quantidade label {
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 60px;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .whatsapp {
+            background-color: var(--cor-destaque);
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .whatsapp:hover {
+            background-color: #168c40;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100%;
+            background-color: var(--cor-primaria);
+            color: white;
+            padding: 2rem 1rem;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            overflow-y: auto;
+        }
+
+        .side-menu.open {
+            right: 0;
+        }
+
+        .side-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 0.5rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .side-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        #carrinhoModal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 1.5rem;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            z-index: 1010;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        #carrinhoItens {
+            margin: 1rem 0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        #carrinhoItens div {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .carrinho-botoes {
+            display: flex;
+            gap: 10px;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .carrinho-botoes button {
+            flex: 1;
+            min-width: 120px;
+            padding: 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            border: none;
+        }
+
+        .btn-continuar {
+            background-color: var(--cor-primaria);
+            color: white;
+        }
+
+        .btn-finalizar {
+            background-color: var(--cor-destaque);
+            color: white;
+        }
+
+        .produto.invisivel {
+            display: none;
+        }
+
+        /* Seções de sobre e contato */
+        #sobre,
+        #contato {
+            background: #fff0f5;
+            padding: 2rem 1rem;
+            border-radius: 1rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            box-shadow: var(--sombra);
+        }
+
+        #sobre h2,
+        #contato h2 {
+            color: #c71585;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        #contato a {
+            text-decoration: none;
+            color: #5a3b4c;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.8rem 0;
+        }
+
+        /* Media Queries para responsividade */
+        @media (min-width: 480px) {
+            .logo span {
+                display: inline;
+            }
+
+            .carrinho-btn {
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .produtos {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+
+
+            .bloco-compra {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .whatsapp {
+                width: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .categorias-nav {
+                padding: 0.8rem;
+                gap: 0.5rem;
+            }
+
+            .categorias-nav a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .produtos {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .carrinho-botoes {
+                flex-direction: column;
+            }
+
+            .carrinho-botoes button {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .produto h3 {
+                font-size: 1rem;
+            }
+
+            .whatsapp {
+                font-size: 0.8rem;
+                padding: 0.6rem;
+            }
+        }
+
+
+        /* Animações */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .produto {
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Melhorias de acessibilidade */
+        button:focus,
+        input:focus,
+        a:focus {
+            outline: 2px solid var(--cor-destaque);
+            outline-offset: 2px;
+        }
+
+        /* Estilo para o botão de remover do carrinho */
+        .btn-remover {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        #carrinhoItens div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            /* dá espaço entre nome e preço */
+        }
+
+        #carrinhoItens div>div:first-child {
+            flex: 1;
+            /* ocupa o espaço disponível */
+            font-size: 0.9rem;
+            /* diminui um pouco a fonte */
+            white-space: nowrap;
+            /* evita quebra de linha */
+            overflow: hidden;
+            /* corta o excesso */
+            text-overflow: ellipsis;
+            /* coloca "..." no final */
+        }
+
+        .titulo-linha {
+            text-align: center;
+            padding: 1rem;
+            margin: 2rem auto 1.5rem auto;
+            border-radius: 10px;
+            background: #ffe6f4;
+            /* rosa bem clarinho */
+            color: #e10b8b;
+            /* rosa mais forte no texto */
+            font-size: 1.5rem;
+            font-weight: bold;
+            border: 2px solid #fa90d1;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            max-width: 90%;
+        }
+
+        .carousel {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            display: flex;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 10px;
+        }
+
+        .carousel img {
+            flex: 0 0 100%;
+            /* cada imagem ocupa toda a largura do card */
+            scroll-snap-align: center;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .img-glamour {
+            max-height: 350px;
+            /* altura máxima */
+            max-width: 100%;
+            /* nunca passa da largura do card */
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+            /* centraliza */
+        }
+
+        .img-al {
+            width: 100%;
+            /* ocupa a largura total do card */
+            height: auto;
+            max-height: 490px;
+            /* aumenta limite da altura */
+            object-fit: contain;
+            /* mantém proporção sem cortar */
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+            /* centraliza */
+        }
+
+        /* estilo normal para celular (default) */
+        .produto.destaque {
+            grid-column: span 1;
+            /* ocupa só 1 coluna no mobile */
+        }
+
+        /* só em telas maiores que 768px (tablet/pc) */
+        @media (min-width: 768px) {
+            .produto.destaque {
+                grid-column: span 2;
+                /* ocupa 2 colunas no desktop */
+            }
+        }
+    </style>
+</head>
+
+<body id="topo">
+
+    <header>
+        <button class="carrinho-btn" onclick="atualizarCarrinho()">
+            🛒 <span class="carrinho-texto">Carrinho</span>
+        </button>
+        <a href="#topo" class="logo">
+            <img src="imagens/logo.jpeg" alt="Logo da loja" />
+            <span>Club da Luluzinha</span>
+        </a>
+        <div class="menu" onclick="toggleMenu()" aria-label="Abrir menu">☰</div>
+    </header>
+
+    <div class="overlay" id="menuOverlay" onclick="fecharMenu()"></div>
+
+    <div class="side-menu" id="sideMenu">
+        <a href="#sobre" onclick="fecharMenu()">Sobre nós</a>
+        <a href="#contato" onclick="fecharMenu()">Contato</a>
+        <a href="#Pink-Glow" onclick="fecharMenu()">Pink Glow</a>
+        <a href="#Magia-do-Brilho" onclick="fecharMenu()">Magia do Brilho</a>
+        <a href="#Clube-dos-Cachos" onclick="fecharMenu()">Clube dos Cachos</a>
+        <a href="#Glamour-Hair" onclick="fecharMenu()">Glamour Hair</a>
+        <a href="#Boa-Garota" onclick="fecharMenu()">Boa Garota</a>
+        <a href="#Nature-Glow" onclick="fecharMenu()">Nature Glow</a>
+        <a href="#A-mpolas" onclick="fecharMenu()">Ampolas</a>
+        <a href="#Destaques-Individuais" onclick="fecharMenu()">Destaques Individuais</a>
+        <a href="#Kits-Completos" onclick="fecharMenu()">Kits Completos</a>
+
+    </div>
+
+    <nav class="categorias-nav">
+        <a href="#Pink-Glow">Pink Glow</a>
+        <a href="#Magia-do-Brilho">Magia do Brilho</a>
+        <a href="#Clube-dos-Cachos">Clube dos Cachos</a>
+        <a href="#Glamour-Hair">Glamour Hair</a>
+        <a href="#Boa-Garota">Boa Garota</a>
+        <a href="#Nature-Glow">Nature Glow</a>
+        <a href="#A-mpolas">Ampolas</a>
+        <a href="#Destaques-Individuais">Destaques Individuais</a>
+        <a href="#Kits-Completos">Kits Completos</a>
+    </nav>
+
+    <!-- Conteúdo das categorias (apenas uma como exemplo) -->
+    <section class="categoria" id="Pink-Glow">
+        <h2 class="titulo-linha">Pink Glow</h2>
+        <div class="produtos">
+            <div class="produto">
+                <img src="imagens/mascara.jpeg" alt="Máscara Pink Glow" loading="lazy" />
+                <h3>Máscara Pink Glow</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Máscara Pink Glow - Reparação Total - 300g </strong><br /><br />
+                    Ideal para todos os tipos de cabelo, esta máscara oferece:
+                    <ul>
+                        <li>Brilho instantâneo - resultado visível após a primeira aplicação</li>
+                        <li>Reposição de nutrientes - fórmula com colágeno vegetal para fortalecimento</li>
+                        <li>Hidratação equilibrada - textura cremosa que não pesa nos fios</li>
+                        <li>Uso universal - adapta-se a cabelos lisos, cacheados ou quimicamente tratados</li>
+                    </ul>
+                    Perfeita para quem busca cabelos sedosos e com saúde sem complicação.
+                </div>
+                <p class="preco">R$ 61,41</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-mascglow1" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp" onclick="adicionarAoCarrinho('Máscara Pink Glow', 61.41, 'qtd-mascglow1')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!--------------- Condicionador -->
+            <div class="produto">
+                <img src="imagens/condicionador.jpeg" alt="Condicionador Pink Glow" />
+                <h3>Condicionador Pink Glow</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Condicionador Pós-Química Reconstrutor - 300ml</strong><br /><br />
+                    Ideal para cabelos que passaram por químicas como progressiva,
+                    coloração ou relaxamento, este condicionador oferece:
+                    <ul>
+                        <li>
+                            Recuperação imediata - neutraliza danos e repõe nutrientes
+                            perdidos durante o processo químico
+                        </li>
+                        <li>
+                            Cutículas seladas - protege a fibra capilar e mantém a
+                            hidratação por mais tempo
+                        </li>
+                        <li>
+                            Frizz controlado - deixa os fios alinhados e com toque macio
+                            mesmo após descoloração
+                        </li>
+                        <li>
+                            Fortalecimento intenso - previne quebra e pontas duplas em
+                            cabelos sensibilizados
+                        </li>
+                        <li>
+                            Resultado prolongado - ajuda a manter o efeito da química (liso,
+                            cor ou definição) por mais semanas
+                        </li>
+                    </ul>
+                    Perfeito para quem deseja cabelos saudáveis mesmo após procedimentos
+                    químicos agressivos.
+                </div>
+                <p class="preco">R$ 51,97</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-condpink1" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Condicionador Pink Glow', 51.97, 'qtd-condpink1')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+            <!-- Produto 3 - Shampoo -->
+            <div class="produto">
+                <img src="imagens/shampoo.jpeg" alt="Shampoo Pink Glow" />
+                <h3>Shampoo Pink Glow</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Shampoo Pós-Química Reconstrutor - 300ml</strong><br /><br />
+                    Ideal para cabelos que passaram por progressiva, coloração ou
+                    relaxamento, este shampoo oferece:
+                    <ul>
+                        <li>
+                            Limpeza suave - não agride a fibra capilar, evitando o
+                            ressecamento
+                        </li>
+                        <li>
+                            pH equilibrado - ajuda a selar as cutículas do fio após a
+                            química
+                        </li>
+                        <li>
+                            Reposição de nutrientes - fórmula enriquecida com ativos
+                            hidratantes e reconstrutores
+                        </li>
+                        <li>
+                            Durabilidade estendida - mantém o efeito da progressiva ou cor
+                            por mais tempo
+                        </li>
+                    </ul>
+
+                    A escolha perfeita para quem quer preservar a saúde dos fios após
+                    procedimentos químicos.
+                </div>
+                <p class="preco">R$ 49,31</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-shppink1" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp" onclick="adicionarAoCarrinho('Shampoo Pink Glow', 49.31, 'qtd-shppink1')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Produto 4 - Leave-In-->
+            <div class="produto">
+                <img src="imagens/leavein.jpeg" alt="Leave-in Pink Glow" />
+                <h3>Leave-in Pink Glow</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Leave-In Protetor - Pós Química - 300ml</strong><br /><br />
+                    Ideal para cabelos quimicamente tratados ou danificados, este
+                    leave-in oferece:
+                    <ul>
+                        <li>
+                            Hidratação profunda - nutre e protege os fios fragilizados
+                        </li>
+                        <li>
+                            Controle de frizz - proporciona maciez e alinhamento imediato
+                        </li>
+                        <li>
+                            Desembaraço facilitado - diminui a quebra durante a escovação
+                        </li>
+                        <li>
+                            Efeito prolongado - mantém os resultados dos tratamentos
+                            químicos
+                        </li>
+                        <li>
+                            Barreira protetora - defende contra calor de chapinha e poluição
+                        </li>
+                    </ul>
+                    O cuidado essencial para quem busca praticidade sem abrir mão de
+                    resultados profissionais.
+                </div>
+                <p class="preco">R$ 51,97</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-leaveinpink" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Leave-In Pink Glow', 51.97, 'qtd-leaveinpink')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================= MAGIA DO BRILHO ================= -->
+    <section class="categoria" id="Magia-do-Brilho">
+        <h2 class="titulo-linha">Magia do Brilho </h2>
+        <div class="produtos">
+            <!-- Produto 1 - Máscara -->
+            <div class="produto">
+                <img src="imagens/maskara-magia.jpeg" alt="Máscara Magia do Brilho" loading="lazy" />
+                <h3>Máscara Magia do Brilho</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Máscara Reconstrutora de Brilho - 300g</strong><br /><br />
+                    Desenvolvida para todos os tipos de cabelo, esta máscara proporciona:
+                    <ul>
+                        <li>Brilho imediato – resultado visível desde a primeira aplicação</li>
+                        <li>Hidratação intensiva – nutrição profunda sem pesar os fios</li>
+                        <li>Selamento das cutículas – toque macio e efeito antifrizz</li>
+                        <li>Reparação efetiva – revitaliza cabelos danificados e sem vida</li>
+                        <li>Fórmula versátil – adapta-se a lisos, cacheados ou tratados</li>
+                    </ul>
+                    Ideal para quem deseja fios sedosos e luminosos.
+                </div>
+                <p class="preco">R$ 61,41</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-mascbrilho1" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Máscara Magia do Brilho', 61.41, 'qtd-mascbrilho1')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Produto 2 - Condicionador -->
+            <div class="produto">
+                <img src="imagens/condi-magia.jpeg" alt="Condicionador Magia do Brilho" loading="lazy" />
+                <h3>Condicionador Magia do Brilho</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Condicionador Reparador & Antifrizz - 300ml</strong><br /><br />
+                    Um tratamento completo em um só produto:
+                    <ul>
+                        <li>Brilho imediato – efeito espelhado</li>
+                        <li>Desembaraço fácil – desliza sem pesar</li>
+                        <li>Toque sedoso – reduz frizz e alinha cutículas</li>
+                        <li>Proteção ativa – repara pontas e defende contra danos externos</li>
+                        <li>Universal – perfeito para todos os tipos de cabelo</li>
+                    </ul>
+                    Resultado: fios alinhados, macios e com brilho irresistível.
+                </div>
+                <p class="preco">R$ 51,97</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-condbrilho1" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Condicionador Magia do Brilho', 51.97, 'qtd-condbrilho1')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!----------------------------++++++++++++++++-SHAMPOO-----------03-->
+            <div class="produto">
+                <img src="imagens/shampo-magia.jpeg" alt="Shampoo Magia do Brilho" loading="lazy" />
+                <h3>Shampoo Magia do Brilho</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Shampoo Magia do Brilho - 300ml</strong><br /><br />
+                    Um tratamento completo que garante brilho intenso, proteção e maciez
+                    imediata:
+                    <ul style="padding-left: 1.2rem; margin: 0.5rem 0">
+                        <li>
+                            Brilho Instantâneo – realça a luminosidade natural desde a
+                            primeira lavagem
+                        </li>
+                        <li>
+                            Limpeza Suave – remove impurezas sem agredir o couro cabeludo
+                        </li>
+                        <li>
+                            Hidratação Equilibrada – mantém os fios macios e com toque sedos
+                        </li>
+                        <li>
+                            Ação Revitalizante – combate o aspecto opaco, devolvendo vida
+                            aos cabelos
+                        </li>
+                        <li>Textura Leve – não pesa e é ideal para uso diário</li>
+                        <li>
+                            Fragrância Delicada – perfume suave que permanece nos fios
+                        </li>
+                    </ul>
+                    Formulado para todos os tipos de cabelo
+                </div>
+                <p class="preco">R$ 49,31</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-shpbrilho1" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Shampoo Magia do Brilho', 49.31, 'qtd-shpbrilho1')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+            <!----------------------------++++++++++++++++------------04FINALIZADOR-->
+            <div class="produto">
+                <img src="imagens/finalizador-magia.jpeg" alt="Finalizador Magia do Brilho" loading="lazy" />
+                <h3>Finalizador Magia do Brilho</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Finalizador Magia do Brilho - 300ml</strong><br /><br />
+                    O toque final perfeito para seus cabelos:
+                    <ul style="padding-left: 1.2rem; margin: 0.5rem 0">
+                        <li>
+                            Brilho Espelhado – efeito luminoso instantâneo e duradouro
+                        </li>
+                        <li>Toque Aveludado – maciez intensa com acabamento sedoso</li>
+                        <li>
+                            Controle Total de Frizz – proteção contra umidade e selamento de
+                            cutículas
+                        </li>
+                        <li>
+                            Termoproteção – blindagem contra calor de secador e chapinha
+                        </li>
+                        <li>Efeito Antiumidade – neutraliza o volume indesejado</li>
+                        <li>Desembaraço Facilitado – fios alinhados e sem nós</li>
+                        <li>
+                            Fórmula Leve – não oleosa e universal para todos os tipos de
+                            cabelo
+                        </li>
+                        <li>
+                            Fragrância Exclusiva – perfume delicado que permanece nos fios
+                        </li>
+                    </ul>
+                    Resultado: Cabelos com brilho profissional, proteção e maciez em
+                    qualquer situação.
+                </div>
+                <p class="preco">R$ 51,97</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-finalizadorbrilho1" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Finalizador Magia do Brilho', 51.97, 'qtd-finalizadorbrilho1')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Fim dos produtos da categoria Magia do Brilho -->
+    <!-- ================= CLUBE DOS CACHOS ================= -->
+    <section class="categoria" id="Clube-dos-Cachos">
+        <h2 class="titulo-linha">Clube dos Cachos</h2>
+        <div class="produtos">
+            <!-- Produto 1 - Máscara -->
+            <div class="produto">
+                <img src="imagens/Mascaracc.jpeg" alt="Máscara Clube dos Cachos" loading="lazy" />
+                <h3>Máscara Clube dos Cachos</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Máscara Cachos Perfeitos - 500g</strong><br /><br />
+                    Nutrição profissional para cachos definidos e cheios de vida
+                    <ul style="padding-left: 1.2rem; margin: 0.5rem 0">
+                        <li>Definição intensa - estrutura e forma aos cachos</li>
+                        <li>Brilho imediato - realça a beleza natural dos fios</li>
+                        <li>Controle de frizz - efeito anti-repelente que dura</li>
+                        <li>Hidratação profunda - sem deixar os fios pesados</li>
+                        <li>
+                            Fórmula versátil – adapta-se a cabelos lisos, cacheados ou
+                            tratados
+                        </li>
+                    </ul>
+                    Cachos mais definidos, macios e com movimento natural que
+                    impressiona, assim, para quem quer cachos perfeitos do lavar ao
+                    secar.
+                </div>
+                <p class="preco">R$ 80,33</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-mascc1" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Máscara Clube dos Cachos', 80.33, 'qtd-mascc1')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Produto 2 - Condicionador -->
+            <div class="produto">
+                <img src="imagens/Condicionadorcc.jpeg" alt="Condicionador Clube dos Cachos" loading="lazy" />
+                <h3>Condicionador Clube dos Cachos</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Condicionador Cachos Perfeitos - 500ml</strong><br /><br />
+                    Nutrição profissional para cachos definidos e cheios de vida
+                    <ul>
+                        <li>Definição intensa - estrutura e forma aos cachos</li>
+                        <li>Brilho imediato - realça a beleza natural dos fios</li>
+                        <li>Controle de frizz - efeito anti-repelente que dura</li>
+                        <li>Hidratação profunda - sem deixar os fios pesados</li>
+                    </ul>
+                    Cachos mais definidos, macios e com movimento natural que
+                    impressiona, assim, ideal para quem quer cachos perfeitos do lavar ao secar.
+                </div>
+                <p class="preco">R$ 75,79</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-condcc1" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Condicionador Clube dos Cachos', 75.79, 'qtd-condcc1')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+
+            <!----------------------------++++++++++++++++-SHAMPOO-----------03-->
+            <div class="produto">
+                <img src="imagens/Shampoocc.jpeg" alt="Shampoo Clube dos Cachos" loading="lazy" />
+                <h3>Shampoo Clube dos Cachos</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Shampoo Definição & Cuidado - 500ml</strong><br /><br />
+                    Limpeza inteligente para cachos perfeitos
+                    <ul>
+                        <li>Limpeza suave - remove impurezas sem ressecar</li>
+                        <li>Hidratação imediata - trata os fios durante a lavagem</li>
+                        <li>Definição preparatória - ativa o formato natural dos cachos</li>
+                        <li>Fórmula consciente - zero sulfato, parabenos ou petrolatos</li>
+                    </ul>
+                    Cachos limpos, fortalecidos e prontos para a finalização - com
+                    brilho saudável e redução imediata do frizz.
+                </div>
+                <p class="preco">R$ 71,92</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-shampcc1" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Shampoo Clube dos Cachos', 71.92, 'qtd-shampcc1')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!----------------------------++++++++++++++++------------04FINALIZADOR-->
+            <div class="produto">
+                <img src="imagens/Ativadorcc.jpeg" alt="Ativador Clube dos Cachos" loading="lazy" />
+                <h3>Ativador Clube dos Cachos</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Ativador Clube dos Cachos - 500ml</strong><br /><br />
+                    Definição profissional com toque leve
+                    <ul>
+                        <li>Hidratação inteligente - nutrição sem pesar nos fios</li>
+                        <li>Definição imediata - ativa o formato natural dos cachos</li>
+                        <li>Efeito "zero frizz" - controle prolongado da disciplina capilar</li>
+                        <li>Volume equilibrado - corpo sem excesso de volume</li>
+                    </ul>
+                    Aplique em cabelos úmidos após o banho. Finalize com difusor ou
+                    toalha para ativar os cachos.
+                </div>
+                <p class="preco">R$ 75,79</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-atvcc1" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Ativador Clube dos Cachos', 75.79, 'qtd-atvcc1')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fim dos produtos da categoria Clube dos Cachos -->
+    <section class="categoria" id="Glamour-Hair">
+        <h2 class="titulo-linha">Glamour Hair</h2>
+        <div class="produtos">
+            <!-- Produto 1 - Máscara -->
+            <div class="produto">
+                <img src="imagens/maskhair.jpeg" alt="Máscara Glamour Hair" loading="lazy" />
+                <h3>Máscara Glamour Hair</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Máscara Glamour Hair - 1L</strong><br /><br />
+                    Tratamento completo em um só passo
+                    <ul>
+                        <li>Hidrata profundamente - reposição hídrica com toque leve</li>
+                        <li>Nutre intensamente - óleos vegetais para brilho e controle de frizz</li>
+                        <li>Reconstrói com força - fortalece a fibra capilar e reduz quebras</li>
+                        <strong>Para quem:</strong>
+                        <li>Quer praticidade sem perder eficiência</li>
+                        <li>Busca tratamento completo em um único produto</li>
+                        <li>Deseja cabelos resistentes, macios e cheios de brilho</li>
+                    </ul>
+                    Cabelos transformados, com saúde visível em cada fio!
+                </div>
+                <p class="preco">R$ 122,85</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-maskh1" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Máscara Glamour Hair', 122.85, 'qtd-maskh1')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Produto 2 - Condicionador -->
+            <div class="produto">
+                <img src="imagens/condihair.jpeg" alt="Condicionador Glamour Hair" loading="lazy" />
+                <h3>Condicionador Glamour Hair</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Condicionador Glamour Hair - 1L</strong><br /><br />
+                    O poder do cronograma capilar em um só produto. Ação tripla completa:
+                    <ul>
+                        <li>Hidratação intensiva - reposição hídrica para maciez e brilho imediato</li>
+                        <li>Nutrição profunda - óleos vegetais que combatem ressecamento e frizz</li>
+                        <li>Reconstrução inteligente - fortalece a fibra sem pesar nos fios</li>
+                        <strong>Para quem é ideal:</strong>
+                        <li>Cabelos submetidos a químicas ou coloração</li>
+                        <li>Fios ressecados que precisam de recuperação</li>
+                        <li>Quem busca praticidade sem abrir mão de resultados profissionais</li>
+                        <strong>Diferenciais:</strong>
+                        <li>Fórmula versátil para todos os tipos de cabelo</li>
+                        <li>Pode ser usado diariamente</li>
+                        <li>Resultados perceptíveis desde a primeira aplicação</li>
+                    </ul>
+                    Fios saudáveis, leves e com vitalidade renovada - prontos para qualquer finalização!
+                </div>
+                <p class="preco">R$ 118,13</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-condh1" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Condicionador Glamour Hair', 118.13, 'qtd-condh1')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!----------------------------++++++++++++++++-SHAMPOO-----------03-->
+            <div class="produto">
+                <img src="imagens/shamphair.jpeg" alt="Shampoo Glamour Hair" loading="lazy" />
+                <h3>Shampoo Glamour Hair</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Shampoo Glamour Hair - 1L</strong><br /><br />
+                    Limpeza inteligente com tratamento completo:
+                    <ul>
+                        <li>Nutrição intensa – reposição de lipídios para fios macios e sem frizz</li>
+                        <li>Reconstrução eficaz – fortalece a fibra e reduz danos de químicas/calor</li>
+                        <li>Hidratação profunda – devolve água e vitalidade aos fios</li>
+                        <strong>Benefícios exclusivos:</strong>
+                        <li>Limpeza suave que não resseca</li>
+                        <li>Recuperação progressiva da saúde capilar</li>
+                        <li>Resultado imediato: cabelos com brilho e movimento</li>
+                        <strong>Ideal para:</strong>
+                        <li>Cabelos submetidos a processos químicos</li>
+                        <li>Fios ressecados e sem vida</li>
+                        <li>Quem deseja praticidade sem abrir mão de cuidados profissionais</li>
+                    </ul>
+                    Saúde capilar começa na lavagem!
+                </div>
+                <p class="preco">R$ 107,61</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-shamph1" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Shampoo Glamour Hair', 107.61, 'qtd-shamph1')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+            <!----------------------------++++++++++++++++------------04FINALIZADOR-->
+            <div class="produto">
+                <img src="imagens/finalizadorhair.jpeg" alt="Finalizador Glamour Hair" loading="lazy" />
+                <h3>Finalizador Glamour Hair</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Finalizador Glamour Hair - 1L</strong><br /><br />
+                    O tratamento completo que seu cabelo precisa no dia a dia
+                    <ul>
+                        <li>Hidratação profunda - reposição hídrica para fios macios e maleáveis</li>
+                        <li>Nutrição intensa - óleos e manteigas vegetais que revestem e iluminam</li>
+                        <li>Reconstrução eficaz - proteínas e aminoácidos que fortalecem a fibra capilar</li>
+                        <strong>Benefícios adicionais:</strong>
+                        <li>Proteção térmica (até 230°C)</li>
+                        <li>Controle de frizz por até 24h</li>
+                        <li>Textura ultraleve que não pesa</li>
+                        <li>Brilho intenso e acabamento perfeito</li>
+                        <strong>Como usar:</strong>
+                        <li>Aplique em cabelos limpos e úmidos ou secos. Distribua uniformemente do comprimento às
+                            pontas. Pode ser usado como leave-in ou para finalização.</li>
+                        <strong>Ideal para:</strong>
+                        <li>Quem deseja praticidade sem perder eficiência</li>
+                        <li>Cabelos submetidos a químicas ou calor excessivo</li>
+                        <li>Todos os tipos de fios que precisam de cuidados diários</li>
+                    </ul>
+                    Fios disciplinados, protegidos e com brilho saudável - prontos para qualquer finalização!
+                </div>
+                <p class="preco">R$ 118,13</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-finh1" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Finalizador Glamour Hair', 118.13, 'qtd-finh1')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fim dos produtos da categoria Glamour Hair -->
+    <section class="categoria" id="Boa-Garota">
+        <h2 class="titulo-linha">Boa Garota</h2>
+        <div class="produtos">
+            <!-- Produto 1 - Máscara -->
+            <div class="produto">
+                <img src="imagens/maskara boa.jpeg" alt="Máscara Boa Garota" loading="lazy" />
+                <h3>Máscara Boa Garota</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Máscara Matizadora Boa Garota - 300ml</strong><br /><br />
+                    Hidratação profunda + Matização de alta performance
+                    <ul>
+                        <li>Hidrata profundamente – tratamento intenso para fios ressecados</li>
+                        <li>Matiza com alta performance – neutraliza os tons amarelados com precisão</li>
+                        <li>Realça a cor fria – efeito platinado e luminoso nos cabelos</li>
+                    </ul>
+                    <strong>Diferenciais:</strong>
+                    <ul>
+                        <li>Resultado visível desde a primeira aplicação</li>
+                        <li>Fórmula nutritiva com ação antioxidante</li>
+                        <li>Ideal para manutenção de loiros, platinados e grisalhos</li>
+                    </ul>
+                    Para fios hidratados, sem amarelado e com cor radiante!
+                </div>
+                <p class="preco">R$ 61,41</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-masboah1" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp" onclick="adicionarAoCarrinho('Máscara Boa Garota', 61.41, 'qtd-masboah1')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Produto 2 - Condicionador -->
+            <div class="produto">
+                <img src="imagens/cond boa garota.jpeg" alt="Condicionador Boa Garota" loading="lazy" />
+                <h3>Condicionador Boa Garota</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Condicionador Finalizador Boa Garota - 300ml</strong><br /><br />
+                    Selagem + Brilho intenso + Prolongamento do efeito matizador
+                    <ul>
+                        <li>Sela as cutículas – promove acabamento alinhado e toque sedoso</li>
+                        <li>Intensifica o brilho – efeito luminoso imediato</li>
+                        <li>Prolonga o efeito matizador – mantém o tom neutro por mais tempo</li>
+                    </ul>
+                    <strong>Diferenciais:</strong>
+                    <ul>
+                        <li>Finalização profissional em casa</li>
+                        <li>Ideal para rotina de cuidados pós-matização</li>
+                        <li>Ajuda a preservar a hidratação e a cor dos fios</li>
+                    </ul>
+                    Para cabelos matizados, brilhosos e protegidos por muito mais tempo!
+                </div>
+                <p class="preco">R$ 51,97</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-condboa1" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Condicionador Boa Garota', 51.97, 'qtd-condboa1')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!----------------------------++++++++++++++++-SHAMPOO-----------03-->
+            <div class="produto">
+                <img src="imagens/shboa.jpeg" alt="Shampoo Boa Garota" loading="lazy" />
+                <h3>Shampoo Boa Garota</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Shampoo Matizador Boa Garota - 300ml</strong><br /><br />
+                    Limpeza suave + Neutralização dos tons amarelados
+                    <ul>
+                        <li>Limpeza suave – remove impurezas sem ressecar os fios</li>
+                        <li>Início da matização – prepara os cabelos para a neutralização dos tons amarelados</li>
+                    </ul>
+                    <strong>Diferenciais:</strong>
+                    <ul>
+                        <li>Ideal para loiros, grisalhos e descoloridos</li>
+                        <li>Uso diário sem agressão aos fios</li>
+                        <li>Ajuda a manter o tom luminoso por mais tempo</li>
+                    </ul>
+                    Para cabelos limpos, saudáveis e com a cor sempre em dia!
+                </div>
+                <p class="preco">R$ 49,31</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-shboa1" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp" onclick="adicionarAoCarrinho('Shampoo Boa Garota', 49.31, 'qtd-shboa1')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+            <div class="produto destaque">
+                <img src="imagens/foto-aleatoria.jpeg" alt="Imagem destaque" class="img-al" />
+            </div>
+        </div>
+    </section>
+    <!-- Fim dos produtos da categoria Boa Garota -->
+    <!--+===============================================================================-->
+    <section class="categoria" id="Nature-Glow">
+        <h2 class="titulo-linha">Nature Glow</h2>
+        <div class="produtos">
+            <!-- Produto 1 - Máscara -->
+            <div class="produto">
+                <img src="imagens/mascara-glow.jpeg" alt="Máscara Nature Glow" loading="lazy" />
+                <h3>Máscara Nature Glow</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Máscara Crescimento Saudável - 300ml</strong><br /><br />
+                    Crescimento saudável dos fios + Hidratação nutritiva
+                    <ul>
+                        <li>Crescimento saudável dos fios – estimula o fortalecimento e o alongamento capilar</li>
+                        <li>Melhoria da saúde do couro cabeludo – promove equilíbrio e vitalidade desde a raiz</li>
+                        <li>Hidratação e nutrição intensas – ação profunda para fios macios e resistentes</li>
+                        <li>Controle do frizz e brilho – fios alinhados e com brilho radiante</li>
+                        <strong>Diferenciais:</strong>
+                        <li>Atuação desde a raiz até as pontas</li>
+                        <li>Resultado visível já nas primeiras aplicações</li>
+                        <li>Fórmula leve e eficaz, ideal para uso contínuo</li>
+                    </ul>
+                    Para quem busca cabelos longos, saudáveis e cheios de vida!
+                </div>
+                <p class="preco">R$ 70,87</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-mascaranature" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Máscara Nature Glow', 70.87, 'qtd-mascaranature')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Produto 2 - =========================================== TONICO -->
+            <div class="produto">
+                <div class="carousel">
+                    <div class="carousel-track">
+                        <img src="imagens/tonico01.jpeg" alt="Tônico costas" loading="lazy" />
+                        <img src="imagens/tonico03.jpeg" alt="Tônico coleção 01" loading="lazy" />
+                        <img src="imagens/tonico02.jpeg" alt="Tônico coleção 02" loading="lazy" />
+                    </div>
+                </div>
+                <h3>Tônico Nature Glow</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Tônico Capilar Nature Glow - 60ml</strong><br /><br />
+                    Crescimento acelerado + Saúde total do couro cabeludo
+                    <ul>
+                        <li>Estimula o crescimento – ativa a circulação no couro cabeludo para fios mais fortes</li>
+                        <li>Combate caspas e seborreia – ação antifúngica e calmante</li>
+                        <li>Controla a oleosidade – equilíbrio ideal sem raiz pesada</li>
+                        <li>Efeito peeling – limpeza profunda que desobstrui os poros</li>
+                    </ul>
+                    <strong>Diferenciais:</strong>
+                    <ul>
+                        <li>Potencializa qualquer tratamento capilar</li>
+                        <li>Uso contínuo com resultados progressivos</li>
+                        <li>Ideal para couro cabeludo sensível ou com descamação</li>
+                    </ul>
+                    Ideal para quem quer crescimento real, sem raiz oleosa e sem descamação!
+                </div>
+                <p class="preco">R$ 56,70</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-toniconature" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Tônico Capilar Nature Glow', 56.70, 'qtd-toniconature')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!--------===========================================--------------------++++++++++++++++-SHAMPOO-----------03-->
+            <div class="produto">
+                <img src="imagens/shampoo-glow.jpeg" alt="Shampoo Nature Glow" loading="lazy" />
+                <h3>Shampoo Nature Glow</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Shampoo Nature Glow - 300ml</strong><br /><br />
+                    Limpeza suave + Ação fortalecedora
+                    <ul>
+                        <li>Limpa suavemente – remove impurezas sem ressecar os fios</li>
+                        <li>Revitaliza desde a raiz – auxilia no equilíbrio do couro cabeludo</li>
+                        <li>Prepara os fios – potencializa os resultados do tratamento Nature Glow</li>
+                    </ul>
+                    <strong>Diferenciais:</strong>
+                    <ul>
+                        <li>Fórmula leve, ideal para uso diário</li>
+                        <li>Promove vitalidade e maciez</li>
+                        <li>Indicado para todos os tipos de cabelo que buscam crescimento saudável</li>
+                    </ul>
+                    Para cabelos limpos, nutridos e prontos para crescer fortes e cheios de vida!
+                </div>
+                <p class="preco">R$ 56,70</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-shamponature" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Shampoo Nature Glow', 56.70, 'qtd-shamponature')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Fim dos produtos da categoria Nature Glow -->
+    <!--+====================================AMPOLAS===========================================-->
+    <section class="categoria" id="A-mpolas">
+        <h2 class="titulo-linha">Ampolas</h2>
+
+        <div class="produtos">
+            <!-- Produto 1 -->
+            <div class="produto">
+                <img src="imagens/goldampola.jpeg" alt="Ampola Gold frente" loading="lazy" />
+                <h3>Ampola Reconstrução Gold</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">Ver descrição</button>
+                <div class="descricao">
+                    <strong>Tratamento Reconstrutor para Cabelos Danificados - 20ml</strong><br /><br />
+                    Tratamento intensivo que age profundamente na fibra capilar:
+                    <ul>
+                        <li><strong>Reconstroem a fibra capilar</strong> – repõem massa perdida</li>
+                        <li><strong>Fortalecem o fio</strong> – evitam quebra e pontas duplas</li>
+                        <li><strong>Recuperam fios elásticos/emborrachados</strong></li>
+                        <li><strong>Ação rápida</strong> – resultado em poucas aplicações</li>
+                        <li><strong>Essenciais pós-química</strong></li>
+                    </ul>
+                </div>
+                <p class="preco">R$ 44,14</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-goldampola" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Ampola Reconstrução Gold', 44.14, 'qtd-goldampola')">Adicionar</button>
+                </div>
+            </div>
+
+            <!-- Produto 2 -->
+            <div class="produto">
+                <img src="imagens/prataampola.jpeg" alt="Ampola Prata frente" loading="lazy" />
+                <h3>Ampola Nutrição Prata</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">Ver descrição</button>
+                <div class="descricao">
+                    <strong>Tratamento Nutritivo para Cabelos Ressecados - 20ml</strong><br /><br />
+                    Nutrição profunda que devolve vitalidade:
+                    <ul>
+                        <li><strong>Nutrição imediata</strong> – repõe lipídios</li>
+                        <li><strong>Menos frizz + brilho</strong> – sela cutículas</li>
+                        <li><strong>Maciez e alinhamento</strong> – toque sedoso</li>
+                        <li><strong>Mais resistência</strong> – reduz quebra</li>
+                        <li><strong>Efeito rápido</strong></li>
+                    </ul>
+                </div>
+                <p class="preco">R$ 44,14</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-prataampola" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Ampola Nutrição Prata', 44.14, 'qtd-prataampola')">Adicionar</button>
+                </div>
+            </div>
+
+            <!-- Produto 3 -->
+            <div class="produto">
+                <img src="imagens/bronzeampola.jpeg" alt="Ampola Bronze frente" loading="lazy" />
+                <h3>Ampola Hidratação Bronze</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">Ver descrição</button>
+                <div class="descricao">
+                    <strong>Tratamento Hidratante Intenso - 20ml</strong><br /><br />
+                    Hidratação profunda que revitaliza:
+                    <ul>
+                        <li><strong>Hidratação imediata</strong> – para fios opacos</li>
+                        <li><strong>Ação rápida</strong> – poucos minutos</li>
+                        <li><strong>Prática</strong> – uso em casa ou no salão</li>
+                        <li><strong>Repara danos</strong> – ajuda em pontas duplas</li>
+                        <li><strong>Brilho e maciez</strong> – aspecto saudável</li>
+                    </ul>
+                </div>
+                <p class="preco">R$ 44,14</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-bronzeampola" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Ampola Hidratação Bronze', 44.14, 'qtd-bronzeampola')">Adicionar</button>
+                </div>
+            </div>
+        </div> <!-- /produtos -->
+    </section>
+
+    <!-- Fim dos produtos da categoria Ampolas -->
+    <section class="categoria" id="Destaques-Individuais">
+        <h2 class="titulo-linha">Destaques Individuais</h2>
+        <div class="produtos">
+            <!-- Produto 1 - Perfume Capilar -->
+            <div class="produto">
+                <img src="imagens/perfumecapilar.png" alt="Perfume Capilar Glow" loading="lazy" />
+                <h3>Perfume Capilar Glow</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Perfume Capilar Glow - 60ml</strong><br /><br />
+                    O Perfume Glow vai além do cheiro: ele hidrata seus fios e deixa sua marca por onde você passa.
+                </div>
+                <p class="preco">R$ 69,95</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-perfumecapilar" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Perfume Capilar Glow', 69.95, 'qtd-perfumecapilar')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Produto 2 - =========================================== BRONZE -->
+            <div class="produto">
+                <div class="carousel">
+                    <div class="carousel-track">
+                        <img src="imagens/toqueseco01.jpeg" alt="Toque Seco frente" loading="lazy" />
+                        <img src="imagens/toqueseco.jpeg" alt=" Toque Seco costas" loading="lazy" />
+                        <img src="imagens/toqueseco2.jpeg" alt="Toque Seco" loading="lazy" />
+                    </div>
+                </div>
+                <h3>Reparador de Pontas Toque Seco</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Reparador de Pontas Toque Seco - 60ml</strong><br /><br />
+                    Tratamento multifuncional com 10 benefícios em um só produto:
+                    <ul>
+                        <li>Repara pontas duplas instantaneamente</li>
+                        <li>Reduz o frizz e dá brilho imediato</li>
+                        <li>Proteção térmica até 230°C</li>
+                        <li>Nutre e fortalece os fios sem pesar</li>
+                        <li>Previne ressecamento por químicas e sol</li>
+                        <li>Protege contra cloro, sal e poluição</li>
+                        <li>Melhora a maleabilidade e maciez</li>
+                        <li>Desembaraço fácil e menos quebra</li>
+                        <li>Finalização profissional com efeito leve</li>
+                        <li>Uso diário em cabelos secos ou úmidos</li>
+                    </ul>
+                </div>
+                <p class="preco">R$ 44,14</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-toqueseco" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Reparador de Pontas Toque Seco', 44.14, 'qtd-toqueseco')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!--------===========================================--------------------++++++++++++++++-USO OFICIAL-----------03-->
+            <div class="produto">
+                <div class="carousel">
+                    <div class="carousel-track">
+                        <img src="imagens/foto1.jpeg" alt="Uso Obrigatório unico" loading="lazy" />
+                        <img src="imagens/foto2.jpeg" alt="Uso Obrigatório costas" loading="lazy" />
+                        <img src="imagens/foto3.jpeg" alt="Uso Obrigatório detalhe" loading="lazy" />
+                    </div>
+                </div>
+                <h3>Uso Obrigatório</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Uso Obrigatório Multifunções - 260ml</strong><br><br>
+                    Produto multifuncional que oferece proteção completa e resultados profissionais:
+                    <ul style="padding-left: 1.2rem; margin: 0.5rem 0;">
+                        <li> <strong>BRILHO</strong> - intenso e duradouro</li>
+                        <li> <strong>ANTI FRIZZ</strong> - controle eficaz</li>
+                        <li> <strong>SELA AS CUTÍCULAS</strong> - proteção interna</li>
+                        <li> <strong>NANO RECONSTRUÇÃO</strong> - reparo profundo</li>
+                        <li> <strong>DESEMBARAÇA</strong> - facilita o penteado</li>
+                        <li> <strong>UMECTAÇÃO</strong> - hidratação intensa</li>
+                        <li> <strong>CONTROLE DE VOLUME</strong> - modelagem perfeita</li>
+                        <li> <strong>FACILITA A ESCOVAÇÃO</strong> - toque sedoso</li>
+                        <li> <strong>EFEITO LISO E CACHEADO</strong> - definição ideal</li>
+                        <li> <strong>PREVINE PONTAS DUPLAS</strong> - proteção das pontas</li>
+                    </ul>
+                </div>
+                <p class="preco">R$ 91,97</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-usooficial" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp" onclick="adicionarAoCarrinho('Uso Obrigatório', 91.97, 'qtd-usooficial')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Produto 4 - Mascara Teia -->
+            <!--   ================-->
+            <div class="produto">
+                <img src="imagens/mascara-teia.jpeg" alt="Máscara Teia" loading="lazy" />
+                <h3>Máscara Teia</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Máscara de Tratamento com Resultado Imediato - 300ml</strong><br><br>
+                    Resultado imediato para todos os tipos de cabelo! Seu efeito teia envolve os fios, proporcionando
+                    hidratação profunda, nutrição intensa e brilho espelhado já na primeira aplicação.
+                    <ul style="padding-left: 1.2rem; margin: 0.5rem 0;">
+                        <li><strong>Cabelo sedoso</strong> - fios fortes e com movimento natural</li>
+                        <li><strong>Alinhamento perfeito</strong> - sem frizz e com toque macio</li>
+                        <li><strong>Fragrância exclusiva</strong> - aroma sofisticado que conquista todo mundo</li>
+                        <li><strong>Efeito teia</strong> - envolve cada fio para tratamento completo</li>
+                        <li><strong>Luxo e qualidade</strong> - tratamento profissional com fragrância inesquecível</li>
+                    </ul>
+                </div>
+                <p class="preco">R$ 65,00</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-mascarateia" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp" onclick="adicionarAoCarrinho('Máscara Teia', 65.00, 'qtd-mascarateia')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!-- 04 Glamour Liso-->
+            <div class="produto">
+                <div class="carousel">
+                    <div class="carousel-track">
+                        <img src="imagens/galamour-liso.jpeg" alt="Glamour Liso Frente" loading="lazy" />
+                        <img src="imagens/junto-glamour.jpeg" alt="Promoção Glamour" loading="lazy"
+                            class="img-glamour" />
+                    </div>
+                </div>
+                <h3>Glamour Liso</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Redutor de Volume para Liso Perfeito - 1L</strong><br><br>
+                    Um liso perfeito, cheio de vida e com brilho luxuoso. Toque macio, glamour absoluto e uma fragrância
+                    deliciosa de Babalu.
+                    <ul style="padding-left: 1.2rem; margin: 0.5rem 0;">
+                        <li><strong>Redutor de volume</strong> - controle eficaz para um liso impecável</li>
+                        <li><strong>Brilho luxuoso</strong> - deixa os fios com aparência saudável e radiante</li>
+                        <li><strong>Toque macio</strong> - sensação de seda e suavidade nos cabelos</li>
+                        <li><strong>Fragrância Babalu</strong> - aroma delicioso e marcante</li>
+                        <li><strong>Liso com personalidade</strong> - resultado glamouroso e cheio de vida</li>
+                    </ul>
+                </div>
+                <p class="preco">R$ 260,00</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-glamourliso" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp" onclick="adicionarAoCarrinho('Glamour Liso', 260.00, 'qtd-glamourliso')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!------------------------------- KITS COMPLETOS -->
+    <!--================================================-->
+
+    <section class="categoria" id="Kits-Completos">
+        <h2 class="titulo-linha">Kits Completos</h2>
+        <div class="produtos">
+            <!-- Produto 1 - KIts pink Glow -->
+            <div class="produto">
+                <img src="imagens/kit-pink.jpeg" alt="Kit Pink Glow - Pós Química" loading="lazy" />
+                <h3>Kit Pink Glow - Pós Química</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Kit PINK GLOW Pós-Química – Restauração, brilho e proteção em cada fio!</strong><br /><br />
+                    Seu cabelo passou por química? O Kit PINK GLOW é o tratamento que ele precisa!
+                    Composto por shampoo(300ml), condicionador(300ml), máscara(300ml) e leave-in(300ml), essa linha
+                    oferece:
+                    <ul>
+                        <li>Restauração profunda - reconstrói a fibra capilar danificada por químicas</li>
+                        <li>Brilho intenso - devolve a luminosidade e maciez dos fios saudáveis</li>
+                        <li>Controle total - reduz frizz e pontas duplas imediatamente</li>
+                        <li>Proteção 360° - cria barreira contra calor e agressões externas</li>
+                        <li>Resultado prolongado - mantém o efeito dos tratamentos químicos</li>
+                    </ul>
+                    Resultado: cabelos transformados com aquele <em>glow</em> rosado de saúde capilar!
+                </div>
+                <p class="preco">R$ 214,66</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-kitpink1" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Kit Pink Glow - Pós Química', 214.66, 'qtd-kitpink1')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Produto 2 - =========================================== MAGIA DO BRILHO -->
+            <div class="produto">
+                <img src="imagens/kitmagia-brilho.jpeg" alt="Kit Magia do Brilho" loading="lazy" />
+                <h3>Kit Magia do Brilho</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Kit Completo Magia do Brilho</strong><br /><br />
+                    Seu cabelo merece brilho intenso? Este kit completo (shampoo(300ml) + condicionador(300ml) +
+                    máscara(300ml) +
+                    finalizador(300ml)) foi desenvolvido para transformar seus fios:
+                    <ul>
+                        <li>Brilho Imediato - efeito espelhado visível desde a primeira aplicação</li>
+                        <li>Hidratação Profunda - nutrição intensa que sela as cutículas sem pesar</li>
+                        <li>Proteção Diária - barreira eficiente contra frizz e danos externos</li>
+                        <li>Toque Profissional - maciez sedosa e desembaraço fácil</li>
+                        <li>Resultado prolongado - mantém o efeito dos tratamentos químicos</li>
+                    </ul>
+                    Resultado: cabelos que refletem luz, com movimento leve e saúde visível.
+                    O ritual completo para quem busca fios radiantes todos os dias.
+                </div>
+                <p class="preco">R$ 214,66</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-kitmagia1" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Kit Magia do Brilho', 214.66, 'qtd-kitmagia1')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+            <!------++++++++++++++++-Clube do Cacho-----------03-->
+            <div class="produto">
+                <img src="imagens/kit-clubecachos.jpeg" alt="Kit Clube dos Cachos" loading="lazy" />
+                <h3>Kit Clube dos Cachos</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Kit Completo Clube dos Cachos</strong><br /><br />
+                    Seus cachos merecem o melhor? Este kit completo foi desenvolvido por especialistas para transformar
+                    seus fios:
+                    <ul>
+                        <li>Shampoo(300ml) Definição - limpeza suave que prepara os cachos</li>
+                        <li>Condicionador(300ml) Nutrição - desembaraço fácil + hidratação profunda</li>
+                        <li>Máscara Cachos(300ml) - tratamento intensivo com brilho</li>
+                        <li>Ativador Finalizador(300ml) - definição duradoura sem peso</li>
+                    </ul>
+                    Garanta já seu Kit Clube dos Cachos e liberte a beleza dos seus fios!
+                </div>
+                <p class="preco">R$ 303,83</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-kitch1" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Kit Clube dos Cachos', 303.83, 'qtd-kitch1')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Kit 4 -GLAMOUR HAIR -->
+            <!--   ================-->
+            <div class="produto">
+                <img src="imagens/kithairglamour.jpeg" alt="Kit Glamour Hair" loading="lazy" />
+                <h3>Kit Glamour Hair</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Kit Completo Glamour Hair</strong><br /><br />
+                    Seu cabelo precisa de hidratação, nutrição e reconstrução? Este kit foi desenvolvido para oferecer
+                    os 3 tratamentos essenciais em um só ritual:
+                    <ul>
+                        <li>Shampoo 3×1(1L) - limpeza inteligente que já trata os fios</li>
+                        <li>Condicionador 3×1(1L) - desembaraço com ação tripla</li>
+                        <li>Máscara 3×1(1L) - tratamento profundo em minutos</li>
+                        <li>Finalizador 3×1(1L) - proteção diária completa</li>
+                    </ul>
+                    <strong>Resultados que você vê e sente:</strong>
+                    <ul>
+                        <li>Fios hidratados do comprimento às pontas</li>
+                        <li>Nutrição que combate o ressecamento</li>
+                        <li>Reconstrução para fios fortalecidos</li>
+                        <li>Brilho intenso e toque sedoso</li>
+                    </ul>
+                    <strong>Para quem é perfeito?</strong>
+                    <ul>
+                        <li>Cabelos danificados por químicas ou calor</li>
+                        <li>Quem busca praticidade sem perder eficiência</li>
+                        <li>Todos os tipos de fios que precisam de cuidados especiais</li>
+                    </ul>
+                    Garanta já seu Kit Glamour Hair e liberte a beleza dos seus fios!
+                </div>
+                <p class="preco">R$ 466,72</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-kith1" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp" onclick="adicionarAoCarrinho('Kit Glamour Hair', 466.72, 'qtd-kith1')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Kit Ampola -->
+            <div class="produto">
+                <img src="imagens/kitampola.jpeg" alt="Kit Ampolas Mágicas" loading="lazy" />
+                <h3>Kit Ampolas Mágicas</h3>
+                <button class="ver-descricao" onclick="toggleDescricao(this)">
+                    Ver descrição
+                </button>
+                <div class="descricao">
+                    <strong>Tratamento Completo 3 em 1 para Cabelos Perfeitos</strong><br><br>
+                    O Club da Lulu reuniu em um só kit os três segredos que todo cabelo precisa para ficar impecável:
+                    nutrição(20ml), reconstrução(20ml) e hidratação(20ml). As Ampolas Mágicas foram desenvolvidas com
+                    ativos concentrados
+                    e de alto desempenho, garantindo resultado imediato já na primeira aplicação.
+                    <ul style="padding-left: 1.2rem; margin: 0.5rem 0;">
+                        <li><strong>Hidratação</strong> - repõe a água perdida, devolvendo maciez, brilho e aspecto
+                            saudável</li>
+                        <li><strong>Nutrição</strong> - rica em óleos e vitaminas, reduz o frizz e restaura a
+                            elasticidade</li>
+                        <li><strong>Reconstrução</strong> - repõe a massa capilar e recupera danos de químicas e calor
+                        </li>
+                        <li><strong>Ativos concentrados</strong> - fórmula de alto desempenho para resultado imediato
+                        </li>
+                        <li><strong>Tratamento completo</strong> - mantém os fios bonitos, fortes e radiantes</li>
+                        <li><strong>Resultado profissional</strong> - efeito de salão em minutos de aplicação</li>
+                    </ul>
+                </div>
+                <p class="preco">R$ 130,00</p>
+                <div class="bloco-compra">
+                    <div class="quantidade">
+                        <label>Qtd:</label>
+                        <input type="number" id="qtd-kitampola" min="1" value="1" />
+                    </div>
+                    <button class="whatsapp"
+                        onclick="adicionarAoCarrinho('Kit Ampolas Mágicas', 130.00, 'qtd-kitampola')">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--===============================================-->
+    <!-- SOBRE NÓS -->
+    <section id="sobre" style="
+    background: #fff0f5;
+    padding: 3rem 1rem;
+    border-radius: 1rem;
+    margin: 2rem auto;
+    max-width: 900px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  ">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 2rem">
+            <img src="imagens/logo.jpeg" alt="Logo Club da Luluzinha Cosméticos" style="
+      flex: 1 1 300px;
+      max-width: 300px;
+      border-radius: 1rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    " />
+
+            <div style="
+      flex: 2 1 400px;
+      text-align: left;
+      color: #5a3b4c;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    ">
+                <h2 style="font-size: 2rem; margin-bottom: 1rem; color: #c71585">
+                    Sobre nós
+                </h2>
+                <p>
+                    O <strong>Club da Luluzinha Cosméticos</strong> nasceu do sonho de
+                    transformar cuidados em momentos mágicos. 💕 Somos apaixonadas por
+                    beleza, autoestima e produtos que fazem você se sentir incrível!
+                </p>
+                <p>
+                    Cada linha foi pensada com carinho para valorizar todos os tipos de
+                    cabelo, com fórmulas potentes, fragrâncias encantadoras e muito brilho ✨.
+                </p>
+                <p>
+                    Vem com a gente se cuidar, se amar e se sentir maravilhosa todos os
+                    dias! 💖
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato" style="
+    background: #fff0f5;
+    padding: 2rem 1rem;
+    border-radius: 1rem;
+    margin: 2rem auto;
+    max-width: 700px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+  ">
+        <h2 style="color: #c71585; font-size: 2rem; margin-bottom: 1.5rem">
+            Fale com a gente 💌
+        </h2>
+
+        <div style="
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        align-items: center;
+        font-size: 1.1rem;
+        color: #5a3b4c;
+    ">
+            <a href="https://www.instagram.com/clubdalulu_cosmeticos/" target="_blank" style="
+            text-decoration: none;
+            color: #5a3b4c;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        ">
+                <img src="imagens/insta.jpg" alt="Instagram" style="width: 24px" />
+                @clubdalulu_cosmeticos
+            </a>
+
+            <a href="mailto:clubdalulucosmeticos@gmail.com" style="
+            text-decoration: none;
+            color: #5a3b4c;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        ">
+                <img src="imagens/gmail.png" alt="Email" style="width: 24px" />
+                clubdalulucosmeticos@gmail.com
+            </a>
+
+            <!-- ✅ WhatsApp com mensagem automática -->
+            <a href="https://wa.me/5531994971211?text=Ol%C3%A1,+acessei+o+cat%C3%A1logo+Club+da+Luluzinha+e+gostaria+de+mais+informa%C3%A7%C3%B5es+%F0%9F%92%96"
+                target="_blank"
+                style="text-decoration: none; color: #5a3b4c; display: flex; align-items: center; gap: 0.5rem;">
+                <img src="imagens/wats.jpg" alt="WhatsApp" style="width: 24px" />
+                (31) 99497-1211
+            </a>
+        </div>
+    </section>
+
+    <!--CARRINHO BACK-->
+    <div id="carrinhoModal">
+        <h2>Carrinho de Compras</h2>
+        <div id="carrinhoItens"></div>
+        <p><strong>Total:</strong> R$ <span id="carrinhoTotal">0.00</span></p>
+        <div class="carrinho-botoes">
+            <button class="btn-continuar" onclick="fecharCarrinho()">Continuar Comprando</button>
+            <button class="btn-finalizar" onclick="finalizarCompra()">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <script>
+        const carrinho = [];
+
+        // ========== FUNÇÕES DO MENU ========== //
+        function toggleMenu() {
+            const menu = document.getElementById("sideMenu");
+            const overlay = document.getElementById("menuOverlay");
+            menu.classList.toggle("open");
+            overlay.classList.toggle("active");
+            document.body.style.overflow = menu.classList.contains("open") ? "hidden" : "";
+        }
+
+        function fecharMenu() {
+            const menu = document.getElementById("sideMenu");
+            const overlay = document.getElementById("menuOverlay");
+            menu.classList.remove("open");
+            overlay.classList.remove("active");
+            document.body.style.overflow = "";
+        }
+
+        // ========== FUNÇÕES DE DESCRIÇÃO ========== //
+        function toggleDescricao(botao) {
+            const descricao = botao.nextElementSibling;
+            const estaExpandida = descricao.classList.contains("expandida");
+
+            // Fecha todas as descrições abertas
+            document.querySelectorAll('.descricao.expandida').forEach(desc => {
+                if (desc !== descricao) {
+                    desc.classList.remove("expandida");
+                    desc.previousElementSibling.textContent = "Ver descrição";
+                }
+            });
+
+            // Alterna a descrição atual
+            descricao.classList.toggle("expandida", !estaExpandida);
+            botao.textContent = estaExpandida ? "Ver descrição" : "Esconder descrição";
+        }
+
+        // ========== FUNÇÕES DO CARRINHO ========== //
+        function adicionarAoCarrinho(nome, preco, inputId) {
+            const quantidade = parseInt(document.getElementById(inputId).value);
+            if (!quantidade || quantidade < 1) {
+                alert("Por favor, insira uma quantidade válida");
+                return;
+            }
+
+            const existente = carrinho.find((item) => item.nome === nome);
+            if (existente) {
+                existente.qtd += quantidade;
+            } else {
+                carrinho.push({
+                    nome,
+                    preco,
+                    qtd: quantidade,
+                });
+            }
+
+            // Feedback visual
+            const feedback = document.createElement("div");
+            feedback.textContent = `${quantidade}x ${nome} adicionado ao carrinho!`;
+            feedback.style.position = "fixed";
+            feedback.style.bottom = "20px";
+            feedback.style.right = "20px";
+            feedback.style.backgroundColor = "#1cac51";
+            feedback.style.color = "white";
+            feedback.style.padding = "10px 20px";
+            feedback.style.borderRadius = "5px";
+            feedback.style.zIndex = "2000";
+            document.body.appendChild(feedback);
+
+            setTimeout(() => {
+                feedback.remove();
+            }, 3000);
+
+            atualizarCarrinho();
+        }
+
+        function atualizarCarrinho() {
+            const modal = document.getElementById("carrinhoModal");
+            const carrinhoItens = document.getElementById("carrinhoItens");
+            const carrinhoTotal = document.getElementById("carrinhoTotal");
+
+            carrinhoItens.innerHTML = "";
+            let total = 0;
+
+            if (carrinho.length === 0) {
+                carrinhoItens.innerHTML = "<p>Seu carrinho está vazio</p>";
+            } else {
+                carrinho.forEach((item, index) => {
+                    total += item.preco * item.qtd;
+
+                    const itemDiv = document.createElement("div");
+                    itemDiv.innerHTML = `
+                <div>
+                  <strong>${item.qtd}x</strong> ${item.nome}
+                </div>
+                <div>
+                  R$ ${(item.preco * item.qtd).toFixed(2)}
+                  <button class="btn-remover" onclick="removerDoCarrinho(${index})">×</button>
+                </div>
+            `;
+                    carrinhoItens.appendChild(itemDiv);
+                });
+            }
+
+            carrinhoTotal.textContent = total.toFixed(2);
+            modal.style.display = "block";
+
+            // 🔹 Remove overlays antigos do carrinho antes de criar outro
+            document.querySelectorAll('.overlay.carrinho').forEach(ov => ov.remove());
+
+            // 🔹 Cria overlay exclusivo do carrinho
+            const overlay = document.createElement("div");
+            overlay.className = "overlay active carrinho";
+            overlay.style.zIndex = "1005";
+            overlay.onclick = fecharCarrinho;
+            document.body.appendChild(overlay);
+        }
+
+        function removerDoCarrinho(index) {
+            carrinho.splice(index, 1);
+            atualizarCarrinho();
+        }
+
+        function fecharCarrinho() {
+            document.getElementById("carrinhoModal").style.display = "none";
+            document.querySelectorAll('.overlay').forEach(ov => {
+                if (ov.id !== 'menuOverlay') ov.remove();
+            });
+        }
+
+        function finalizarCompra() {
+            if (carrinho.length === 0) {
+                alert("Seu carrinho está vazio!");
+                return;
+            }
+
+            let mensagem = "Olá, gostaria de comprar os seguintes itens:\n\n";
+            let total = 0;
+
+            carrinho.forEach((item) => {
+                mensagem += `✔ ${item.qtd}x ${item.nome} - R$ ${(item.preco * item.qtd).toFixed(2)}\n`;
+                total += item.preco * item.qtd;
+            });
+
+            mensagem += `\n💰 *Total: R$ ${total.toFixed(2)}*`;
+            mensagem += `\n\nPor favor, confirme a disponibilidade e me informe sobre as formas de pagamento e entrega. Obrigada!`;
+
+            const url = `https://wa.me/5531994971211?text=${encodeURIComponent(mensagem)}`;
+
+            // 🔹 Força abrir numa nova aba sempre
+            window.location.href = url;
+        }
+
+
+        // Fechar o menu ao clicar fora dele
+        document.addEventListener('click', function (event) {
+            const menu = document.getElementById('sideMenu');
+            const menuButton = document.querySelector('.menu');
+            const overlay = document.getElementById('menuOverlay');
+
+            if (menu.classList.contains('open') &&
+                !menu.contains(event.target) &&
+                !menuButton.contains(event.target)) {
+                fecharMenu();
+            }
+        });
+
+        // Melhorar a navegação por âncoras para dispositivos móveis
+        // Melhorar a navegação por âncoras para dispositivos móveis
+        document.querySelectorAll('.categorias-nav a, .side-menu a').forEach(link => {
+            link.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+
+                // Só bloqueia e faz scroll se for link interno (#)
+                if (href && href.startsWith("#")) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(href);
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                // se for https://, mailto:, wa.me → abre normal
+            });
+        });
+
+    </script>
+</body>
+
+</html>
